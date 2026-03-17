@@ -8,10 +8,17 @@ const router = express.Router();
 // GEt all subjects with optional search, filtering and pagination
 router.get("/",async (req,res) => {
     try{
-        const {search, department, page=1, limit=10} = req.query;
+        const { search, department } = req.query;
+        const rawPage = Array.isArray(req.query.page) ? req.query.page[0] : req.query.page;
+        const rawLimit = Array.isArray(req.query.limit) ? req.query.limit[0] : req.query.limit;
+        const parsedPage = Number.parseInt(String(rawPage ?? "1"), 10);
+        const parsedLimit = Number.parseInt(String(rawLimit ?? "10"), 10);
 
-        const currentPage = Math.max(1,+page);
-        const limitPerPage = Math.max(1, +limit);
+        const currentPage = Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
+        const limitPerPage = Math.min(
+            100,
+            Number.isFinite(parsedLimit) && parsedLimit > 0 ? parsedLimit : 10
+        );
 
         const offset = (currentPage - 1) * limitPerPage;
 
