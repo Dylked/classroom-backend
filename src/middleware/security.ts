@@ -56,11 +56,6 @@ const securityMiddleware =  async (req: Request, res: Response, next: NextFuncti
         if(decision.isDenied() && decision.reason.isRateLimit()) {
             return res.status(429).json({error:'Too many requests', message:'Automated request are not allowed'})
         }
-
-        if(decision.isDenied() && decision.reason.isBot()) {
-            return res.status(403).json({error:'Forbidden', message})
-        }
-
         next();
 
     }catch(e){
