@@ -8,6 +8,13 @@
       "when": 1773745914010,
       "tag": "0000_yellow_microchip",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1775311962196,
+      "tag": "0001_gigantic_rumiko_fujikawa",
+      "breakpoints": true
     }
   ]
 }
