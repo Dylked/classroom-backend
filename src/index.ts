@@ -1,5 +1,6 @@
 import express from 'express';
 import subjectsRouter from "./routes/subjects";
+import securityMiddleware from "./middleware/security";
 import cors from 'cors';
 
 const app = express();
@@ -16,6 +17,8 @@ app.use(cors({
 }))
 
 app.use(express.json());
+
+app.use(securityMiddleware)
 
 app.use('/api/subjects', subjectsRouter)
 
