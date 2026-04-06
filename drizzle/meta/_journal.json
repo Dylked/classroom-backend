@@ -15,6 +15,13 @@
       "when": 1775311962196,
       "tag": "0001_gigantic_rumiko_fujikawa",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1775414828674,
+      "tag": "0002_moaning_war_machine",
+      "breakpoints": true
     }
   ]
 }
