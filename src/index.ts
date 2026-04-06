@@ -2,6 +2,10 @@ import express from 'express';
 import subjectsRouter from "./routes/subjects";
 import securityMiddleware from "./middleware/security";
 import cors from 'cors';
+import { toNodeHandler } from "better-auth/node";
+import { auth } from "./lib/auth";
+import AgentAPI from 'apminsight';
+AgentAPI.config();
 
 const app = express();
 const port = 8000;
@@ -12,9 +16,11 @@ if (!process.env.FRONTEND_URL) {
 
 app.use(cors({
   origin: process.env.FRONTEND_URL,
-  methods:['GET','POST','PUT','DELETE'],
-  credentials:true
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
 }))
+
+app.all('/api/auth/{*any}', toNodeHandler(auth));
 
 app.use(express.json());
 
