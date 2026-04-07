@@ -1,5 +1,5 @@
 import arcjet, {shield, detectBot, tokenBucket, slidingWindow} from "@arcjet/node";
-import router from "../routes/subjects";
+import router from "../routes/subjects.js";
 
 if(!process.env.ARCJET_KEY && process.env.NODE_ENV !== 'test'){
     throw new Error('ARCJET_KEY env is required')
